@@ -1,0 +1,56 @@
+<idea-plugin>
+    <id>com.github.re7r.goautodot</id>
+    <name>Go Auto Dot</name>
+    <category>Code tools</category>
+    <vendor url="https://github.com/re7r">Re7r</vendor>
+    <description><![CDATA[
+        <b>Auto-import specified packages with dot alias.</b><br>
+        Remembers your choice to import Go packages with <code>.</code> and applies it automatically across your project.
+        <br><br>
+
+        <b>Usage</b><br>
+        First apply the <b>"Add dot alias import"</b> intention on an import statement.
+        Press <b>Alt+Enter</b> again and select <b>"Remember dot as import alias"</b> to set <b><code>.</code></b> as the alias for the selected package during auto-imports, code completions and formatting.
+        <br><br>
+
+        To undo this behavior, place the caret on the import again, press <b>Alt+Enter</b>, and select <b>"Forget dot import alias"</b>.
+        <br><br>
+
+        <b>Settings</b><br>
+        Manage dot alias preferences under:<br>
+        <b>File → Settings → Go → Go Auto Dot Plugin</b>.
+        <br><br>
+
+        There you'll find a list of packages with dot aliasing enabled and can manually add or remove entries.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>org.jetbrains.plugins.go</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <postStartupActivity implementation="com.github.re7r.goautodot.GoAutoDotStartupActivity"/>
+        <lang.inspectionSuppressor language="go" implementationClass="com.github.re7r.goautodot.suppressors.RedundantImportInspectionSuppressor"/>
+        <intentionAction>
+            <language>go</language>
+            <bundleName>messages.GoAutoDotBundle</bundleName>
+            <categoryKey>com.github.re7r.goautodot.intentions.category</categoryKey>
+            <className>com.github.re7r.goautodot.actions.RememberIntentionAction</className>
+            <skipBeforeAfter>true</skipBeforeAfter>
+        </intentionAction>
+        <intentionAction>
+            <language>go</language>
+            <bundleName>messages.GoAutoDotBundle</bundleName>
+            <categoryKey>com.github.re7r.goautodot.intentions.category</categoryKey>
+            <className>com.github.re7r.goautodot.actions.ForgetIntentionAction</className>
+            <skipBeforeAfter>true</skipBeforeAfter>
+        </intentionAction>
+        <projectConfigurable
+                parentId="go"
+                id="com.github.re7r.goautodot.configurable"
+                bundle="messages.GoAutoDotBundle"
+                key="com.github.re7r.goautodot.configurable.name"
+                instance="com.github.re7r.goautodot.GoAutoDotConfigurable"
+        />
+    </extensions>
+</idea-plugin>
