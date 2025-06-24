@@ -18,7 +18,7 @@ for Go packages and remembers your choice automatically across the entire projec
 
 First apply the **"Add dot alias import"** intention on an import statement.  
 Press <kbd>Alt+Enter</kbd> again and select **"Remember dot as import alias"** to set <code>.</code>  
-as the alias for the selected package during auto-imports, code completions and formatting.
+as the alias for the selected package during auto-imports, auto formatting and code completions.
 
 To disable, use **"Forget dot alias for this package"** from the same menu.
 
