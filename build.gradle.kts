@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.re7r"
-version = "1.0.2"
+version = "1.0.3"
 
 repositories {
     mavenCentral()
@@ -27,7 +27,7 @@ intellijPlatform {
     pluginConfiguration {
         ideaVersion {
             sinceBuild = "242"
-            untilBuild = "261.*"
+            untilBuild = "271.*"
         }
     }
 }
